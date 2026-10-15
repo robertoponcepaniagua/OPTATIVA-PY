@@ -29,3 +29,13 @@
 # precios con.values() .
 # c) Añadir o actualizar: Pedir el nombre de la fruta y su precio para guardarlo o actualizarlo.
 # d) Eliminar: Pedir el nombre de la fruta a eliminar, comprobar si existe y borrarla.
+
+productos = ["manzanas", "plátanos", "naranjas", "kiwis", "fresas"]
+info_tienda = ("Frutería La Huerta", "Calle Mayor 12", "912345678",2010)
+precios = {"manzanas": 1.50, "plátanos": 2.10, "naranjas": 1.20,"kiwis": 3.45, "fresas": 2.80}
+
+print("\n--- MENÚ PRINCIPAL ---")
+print("Opción 1: Gestionar lista de productos")
+print("Opción 2: Consultar info de la tienda")
+print("Opción 3: Gestionar precios")
+print("Opción 4: Salir del programa")
