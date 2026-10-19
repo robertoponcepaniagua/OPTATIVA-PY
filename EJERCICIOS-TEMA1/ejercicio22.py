@@ -18,6 +18,8 @@ ventas = [
 
 option = 0;
 
+
+
 while True:
     print("==========================================")
     print("SISTEMA DE GESTIÓN DE VENTAS")
@@ -41,8 +43,14 @@ while True:
             for marca in MARCAS_MODELOS:
                 print(f"| {marca}")
 
-            marcaElegida = input("Escribe el nombre de la marca que deseas: \n")
 
+            while True:
+                marcaElegida = input("Escribe el nombre de la marca que deseas: \n").strip() # No pongo el capitalice ya que SEAT es todo en mayusculas
+                if marcaElegida in MARCAS_MODELOS:
+                    print(f"Has elegido {marcaElegida}")
+                    break
+                else:
+                    print("Marca no valida")
             
             if marcaElegida in MARCAS_MODELOS:
                 print(f'Has elegido : {marcaElegida}')
@@ -53,7 +61,13 @@ while True:
             for modelo in MARCAS_MODELOS[marcaElegida]:
                 print(f"| {modelo}")
 
-            modeloElegido = input("Escribe el modelo que deseas: \n")
+            while True:
+                modeloElegido = input("Escribe el modelo que deseas: \n").strip().capitalize()
+                if marcaElegida in MARCAS_MODELOS:
+                    print(f"Has elegido {modeloElegido}")
+                    break
+                else:
+                    print("Modelo no valido")
 
             if modeloElegido in MARCAS_MODELOS[marcaElegida]:
                 print(f"Marca y Modelo seleccionados: {marcaElegida} | {modeloElegido}")
@@ -65,8 +79,9 @@ while True:
             while True:
                 try:
                     anio_venta = int(input("Introduce el año de la venta (2024 - 2026)"))
-                    if(anio_venta > 2026 or anio_venta < 2024):
+                    if(anio_venta < 2026 or anio_venta > 2024):
                         print("Bien")
+                        break
                     else:
                         print("Tiene que ser entre 2024 y 2026")
                 except:
@@ -84,12 +99,72 @@ while True:
                 try:
                     precio = float(input("Dime el precio: (1.000 - 100.000)"))
                 except:
-                    print("El numero debe de ser un float")
-
-
-
+                    print("El numero debe de ser un float entre (1.000 - 100.000) ")
         case 2:
+            resultado = {}
             print("2.- Resumen de ventas (Marca_Modelo_Año)")
+
+            print("------------------")
+            print("Marcas disponibles")
+            print("------------------")
+            
+            for marca in MARCAS_MODELOS:
+                print(f"| {marca}")
+
+
+            while True:
+                marcaElegida = input("Escribe el nombre de la marca que deseas: \n").strip() # No pongo el capitalice ya que SEAT es todo en mayusculas
+                if marcaElegida in MARCAS_MODELOS:
+                    print(f"Has elegido {marcaElegida}")
+                    break
+                else:
+                    print("Marca no valida")
+            
+            if marcaElegida in MARCAS_MODELOS:
+                print(f'Has elegido : {marcaElegida}')
+            else:
+                print("Marca no valida")
+
+            print("---------------Modelos---------------")
+            for modelo in MARCAS_MODELOS[marcaElegida]:
+                print(f"| {modelo}")
+
+            while True:
+                modeloElegido = input("Escribe el modelo que deseas: \n").strip().capitalize()
+                if marcaElegida in MARCAS_MODELOS:
+                    print(f"Has elegido {modeloElegido}")
+                    break
+                else:
+                    print("Modelo no valido")
+
+            if modeloElegido in MARCAS_MODELOS[marcaElegida]:
+                print(f"Marca y Modelo seleccionados: {marcaElegida} | {modeloElegido}")
+            else:
+                print("Modelo no encontrado")
+
+            # VALIDACIONES DE AÑO DE VENTA
+
+            while True:
+                try:
+                    anio_venta = int(input("Introduce el año de la venta (2024 - 2026)"))
+                    if(anio_venta < 2026 or anio_venta > 2024):
+                        print("Bien")
+                        break
+                    else:
+                        print("Tiene que ser entre 2024 y 2026")
+                except:
+                    print("El número debe de ser entero")
+
+            Marca_Modelo_AnioVenta = f"{marcaElegida}_{modeloElegido}_{anio_venta}"
+
+            print(Marca_Modelo_AnioVenta)
+
+            for venta in ventas:
+                resultado[Marca_Modelo_AnioVenta] = (0, venta[4]) # TIENE QUE CONTAR LAS VENTAS QUE SE HAGAN EN EL CASE 1 , POR AHORA LE PASO EL 0
+
+            for key, valores in resultado.items():
+                print(f"{key} | {valores[0]} | {valores[1]}€")
+
         case 3:
             print("3.- Resumen de ventas (Marca_Modelo - Todos los años)")
         case 4:
