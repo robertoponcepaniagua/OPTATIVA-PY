@@ -141,7 +141,7 @@ while True:
                 print(f"Marca y Modelo seleccionados: {marcaElegida} | {modeloElegido}")
             else:
                 print("Modelo no encontrado")
-
+                
             # VALIDACIONES DE AÑO DE VENTA
 
             while True:
@@ -167,6 +167,9 @@ while True:
 
         case 3:
             print("3.- Resumen de ventas (Marca_Modelo - Todos los años)")
+
+
+
         case 4:
             print("4.- Resumen de ventas (Marca - Todos los modelos y años)")
         case 5:
