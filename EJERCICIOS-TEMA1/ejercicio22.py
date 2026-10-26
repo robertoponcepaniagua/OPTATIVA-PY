@@ -168,11 +168,26 @@ while True:
         case 3:
             print("3.- Resumen de ventas (Marca_Modelo - Todos los años)")
 
+            while True:
+                for marca in MARCAS_MODELOS: 
+                    print(f"| {marca}")
 
+                marcaElegida = str(input("Escribe el nombre del Marca que desees:\n")).strip()
 
+                if marca in MARCAS_MODELOS:
+                    print("Bien")
+                    break
+
+            while True:
+                for modelo in MARCAS_MODELOS[marcaElegida]:
+                    print(f"| {modelo}")
+
+                modeloElegido = str(input("Escribe el nombre del Modelo que desees:\n")).lower().strip()
+                
         case 4:
             print("4.- Resumen de ventas (Marca - Todos los modelos y años)")
         case 5:
             print("5.- Salir del programa")
+            break
 
     
