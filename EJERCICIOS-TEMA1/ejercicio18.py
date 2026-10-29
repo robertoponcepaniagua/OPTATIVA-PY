@@ -34,139 +34,243 @@
 
 # LISTA
 productos = ["manzanas", "plátanos", "naranjas", "kiwis", "fresas"]
-# TUPLA
-info_tienda = ("Frutería La Huerta", "Calle Mayor 12", "912345678",2010)
-# DICCIONARIO
-precios = {"manzanas": 1.50, "plátanos": 2.10, "naranjas": 1.20,"kiwis": 3.45, "fresas": 2.80}
 
-# ValueError Y IndexError
+# TUPLA
+info_tienda = ("Frutería La Huerta", "Calle Mayor 12", "912345678", 2010)
+
+# DICCIONARIO
+precios = {
+    "manzanas": 1.50,
+    "plátanos": 2.10,
+    "naranjas": 1.20,
+    "kiwis": 3.45,
+    "fresas": 2.80
+}
+
 
 while True:
     print("\n--- MENÚ PRINCIPAL ---")
-    print("Opción 1")
-    print("Opción 2")
-    print("Opción 3")
-    print("Opción 4: Salir")
+    print("1. Gestión de lista (productos)")
+    print("2. Información de la tienda")
+    print("3. Gestión de diccionario (precios)")
+    print("4. Salir")
 
-    opcion = int(input("Elige una opción: "))
+    try:
+        opcion = int(input("Elige una opción: "))
 
-    match opcion:
+        match opcion:
 
-        case 1:
-            while True:
-                print("\n--- SUBMENÚ 1 ---")
-                print("1. Consultar")
-                print("2. Añadir")
-                print("3. Modificar")
-                print("4. Eliminar")
-                print("5. Volver")
+            # 1. GESTIÓN DE LISTA
+            case 1:
+                while True:
+                    print("\n--- SUBMENÚ 1: PRODUCTOS ---")
+                    print("a. Consultar")
+                    print("b. Añadir")
+                    print("c. Modificar")
+                    print("d. Eliminar")
+                    print("e. Volver")
 
-                subopcion = int(input("Elige una opción: "))
+                    subopcion = input("Elige una opción: ").strip().lower()
 
-                match subopcion:
-                    case 1:
-                        for producto in productos:
-                            print(producto)
+                    match subopcion:
 
-                        print(f"Total almacenado: {len(productos)}")
-                    case 2:
-                        producto_añadir = input("Que producto quieres añadir: ").lower().strip()
-                        if producto_añadir in productos:
-                            print("Ya está en la lista")
-                        else:
-                            productos.append(producto_añadir)
-                            print("Añadido con exito")
-                        
-                    case 3:
-                        for indice ,producto in enumerate(productos):
-                            print(f"{indice} | {producto}")
+                        case "a":
+                            print("\n--- LISTA DE PRODUCTOS ---")
 
-                        modificar = int(input("Dime el indice que quieras modificar: "))
+                            for indice, producto in enumerate(productos):
+                                print(f"{indice} | {producto}")
 
-                        if productos[modificar] in productos:
-                            nuevo_nombre = input("Dime el nuevo nombre: ")
-                            productos[modificar] = nuevo_nombre
+                            print(f"Total almacenado: {len(productos)}")
 
-                    case 4:
-                        for indice, producto in enumerate(productos):
-                           print(f"{indice} | {producto}")
-                        indice_eliminar = int(input("Que producto quieres eliminar (indice) : "))
-                        productos.pop(indice_eliminar)
+                        case "b":
+                            producto_añadir = input(
+                                "¿Qué producto quieres añadir?: "
+                            ).strip().lower()
 
-                    case 5:
-                        break
+                            if not producto_añadir:
+                                print("El nombre no puede estar vacío.")
 
-                    case _:
-                        print("Opción no válida.")
+                            elif producto_añadir in productos:
+                                print("Ese producto ya está en la lista.")
 
-        case 2:
-            while True:
-                print("\n--- SUBMENÚ 2 ---")
-                print("1. Consultar")
-                print("2. Volver")
+                            else:
+                                productos.append(producto_añadir)
+                                print("Producto añadido con éxito.")
 
-                subopcion = int(input("Elige una opción: "))
+                        case "c":
+                            if not productos:
+                                print("No hay productos para modificar.")
+                                continue
 
-                match subopcion:
-                    case 1:
-                        for indice, info in enumerate(info_tienda):
-                            print(f"{indice} | {info_tienda[indice]}")
-                        print(f"Longitud: {len(info_tienda)}")
-                    case 2:
-                        break
+                            for indice, producto in enumerate(productos):
+                                print(f"{indice} | {producto}")
 
-                    case _:
-                        print("Opción no válida.")
+                            try:
+                                modificar = int(
+                                    input("Introduce el índice que quieres modificar: ")
+                                )
 
-        case 3:
-            while True:
-                print("\n--- SUBMENÚ 3 ---")
-                print("1. Consultar")
-                print("2. Solo nombres y solo precios")
-                print("3. Añadir o actualizar")
-                print("4. Eliminar")
-                print("5. Salir")
+                                producto_actual = productos[modificar]
 
-                subopcion = int(input("Elige una opción: "))
+                                nuevo_nombre = input(
+                                    "Introduce el nuevo nombre: "
+                                ).strip().lower()
 
-                match subopcion:
-                    case 1:
-                        for fruta in precios:
-                            print(f"{fruta} | {precios[fruta]}")
+                                if not nuevo_nombre:
+                                    print("El nombre no puede estar vacío.")
 
-                    case 2:
-                        print("Solo nombres: ")
-                        for fruta in precios:
-                            print(f"{fruta}")
-                        print("Solo precios: ")
-                        for fruta in precios:
-                            print(f"{precios[fruta]}")
+                                elif (
+                                    nuevo_nombre != producto_actual
+                                    and nuevo_nombre in productos
+                                ):
+                                    print("Ese producto ya existe.")
 
-                    case 3:
-                        aux = input("Dime el nombre de la fruta: ")
-                        aux_precio = int(input("Dime el precio de la fruta: "))
+                                else:
+                                    productos[modificar] = nuevo_nombre
+                                    print("Producto modificado correctamente.")
 
-                        if aux in precios:
-                            if aux_precio != precios[aux]:
-                                precios[aux] = aux_precio
-                        else:
-                            precios[aux] = aux_precio
+                            except ValueError:
+                                print("Debes introducir un número entero.")
 
-                    case 4:
-                        aux = input("Dime el nombre de la fruta: ")
-                        if aux in precios:
-                            precios.pop(aux)
-                        else:
-                            print("No existe")
-                    case 5:
-                        break
+                            except IndexError:
+                                print("El índice no existe.")
 
-                    case _:
-                        print("Opción no válida.")
+                        case "d":
+                            if not productos:
+                                print("No hay productos para eliminar.")
+                                continue
 
-        case 4:
-            print("Saliendo del programa...")
-            break
+                            for indice, producto in enumerate(productos):
+                                print(f"{indice} | {producto}")
 
-        case _:
-            print("Opción no válida.")
+                            try:
+                                indice_eliminar = int(
+                                    input("Introduce el índice que quieres eliminar: ")
+                                )
+
+                                producto_eliminado = productos.pop(indice_eliminar)
+
+                                print(f"Producto eliminado: {producto_eliminado}")
+
+                            except ValueError:
+                                print("Debes introducir un número entero.")
+
+                            except IndexError:
+                                print("El índice no existe.")
+
+                        case "e":
+                            break
+
+                        case _:
+                            print("Opción no válida.")
+
+            # 2. INFORMACIÓN DE LA TIENDA
+            case 2:
+                while True:
+                    print("\n--- SUBMENÚ 2: INFORMACIÓN ---")
+                    print("a. Consultar información")
+                    print("b. Volver")
+
+                    subopcion = input("Elige una opción: ").strip().lower()
+
+                    match subopcion:
+
+                        case "a":
+                            print("\n--- INFORMACIÓN DE LA TIENDA ---")
+                            print(f"Tupla completa: {info_tienda}")
+                            print(f"Longitud: {len(info_tienda)}")
+
+                            print(f"Nombre: {info_tienda[0]}")
+                            print(f"Dirección: {info_tienda[1]}")
+                            print(f"Teléfono: {info_tienda[2]}")
+                            print(f"Año de fundación: {info_tienda[3]}")
+
+                        case "b":
+                            break
+
+                        case _:
+                            print("Opción no válida.")
+
+            # 3. GESTIÓN DE DICCIONARIO
+            case 3:
+                while True:
+                    print("\n--- SUBMENÚ 3: PRECIOS ---")
+                    print("a. Consultar catálogo completo")
+                    print("b. Mostrar nombres y precios")
+                    print("c. Añadir o actualizar")
+                    print("d. Eliminar")
+                    print("e. Volver")
+
+                    subopcion = input("Elige una opción: ").strip().lower()
+
+                    match subopcion:
+
+                        case "a":
+                            print("\n--- CATÁLOGO COMPLETO ---")
+
+                            for fruta, precio in precios.items():
+                                print(f"{fruta} | {precio:.2f} €/kg")
+
+                        case "b":
+                            print("\n--- NOMBRES DE LAS FRUTAS ---")
+
+                            for fruta in precios.keys():
+                                print(fruta)
+
+                            print("\n--- PRECIOS POR KILO ---")
+
+                            for precio in precios.values():
+                                print(f"{precio:.2f} €/kg")
+
+                        case "c":
+                            fruta = input(
+                                "Introduce el nombre de la fruta: "
+                            ).strip().lower()
+
+                            if not fruta:
+                                print("El nombre no puede estar vacío.")
+                                continue
+
+                            try:
+                                precio = float(
+                                    input("Introduce el precio por kilo: ")
+                                )
+
+                                if precio < 0:
+                                    print("El precio no puede ser negativo.")
+
+                                else:
+                                    precios[fruta] = precio
+                                    print("Precio guardado correctamente.")
+
+                            except ValueError:
+                                print("Debes introducir un precio numérico válido.")
+
+                        case "d":
+                            fruta = input(
+                                "Introduce la fruta que quieres eliminar: "
+                            ).strip().lower()
+
+                            if fruta in precios:
+                                del precios[fruta]
+                                print("Fruta eliminada correctamente.")
+
+                            else:
+                                print("Esa fruta no existe en el catálogo.")
+
+                        case "e":
+                            break
+
+                        case _:
+                            print("Opción no válida.")
+
+            # 4. SALIR
+            case 4:
+                print("Saliendo del programa...")
+                break
+
+            case _:
+                print("Opción no válida.")
+
+    except ValueError:
+        print("Debes introducir un número entero para elegir la opción.")
