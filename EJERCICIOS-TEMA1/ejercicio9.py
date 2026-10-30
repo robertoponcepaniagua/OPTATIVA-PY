@@ -3,8 +3,8 @@
 # pedir al usuario que introduzca una cantidad en metros y devolver la cantidad en
 # centímetros.
 
-centimetros = float(input("Escribe los cm: "))
+metros = float(input("Escribe los metros: "))
 
-metros = centimetros / 100
+centimetros = metros * 100
 
-print(f" {centimetros}cm a metros: {metros}m")
+print(f"{metros}m a centímetros: {centimetros}cm")
