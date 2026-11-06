@@ -47,7 +47,21 @@ while(opcion != 6):
             nombreNuevo = input("Dime el nombre nuevo: \n")
             llamadafrutas[indice] = nombreNuevo
         case 5:
-            print("5: ")
+            for indice, fruta in enumerate(llamadafrutas):
+                print(f"{indice} | {fruta}")
+
+            try:
+                indice = int(input("Introduce el índice que quieres borrar: "))
+                fruta_eliminada = llamadafrutas.pop(indice)
+                print(f"Fruta eliminada: {fruta_eliminada}")
+
+            except ValueError:
+                print("Debes introducir un número entero.")
+            except IndexError:
+                print("Ese índice no existe.")
+
         case 6:
-            break
-    
+            print("Saliendo del programa...")
+
+        case _:
+            print("Opción no válida.")

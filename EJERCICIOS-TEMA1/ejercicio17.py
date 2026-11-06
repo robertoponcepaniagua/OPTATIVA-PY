@@ -23,26 +23,23 @@ total_gastado_producto = []
 
 total_compra = 0
 total_cantidades = 0
-contador = 0;
 
 for producto, cantidad, precioUnitario in frutas:
     nombreMayusculas = producto.upper()
 
-    contador = contador + 1
-
-    total_cantidades = total_cantidades + cantidad
-    total_compra = total_compra + precio_producto
-
     precio_producto = cantidad * precioUnitario
 
-    # Usamos .append() para añadir un registro a la lista
-    total_gastado_producto.append((nombreMayusculas, round(precio_producto, 2)))
+    total_cantidades += cantidad
+    total_compra += precio_producto
 
-    for nombre, precio in total_gastado_producto:
-        print(f"Nombre: {nombre} Precio Total: {precio} \n")
+    total_gastado_producto.append(
+        (nombreMayusculas, round(precio_producto, 2))
+    )
+
+# Mostrar el importe de cada producto
+for nombre, precio in total_gastado_producto:
+    print(f"Nombre: {nombre} | Precio total: {precio:.2f} €")
 
 print("----------------------------")
-print(f"Suma de todas las cantidades: {total_cantidades}")
-print(f"Suma de todas los precios: {total_compra}")
-
-
+print(f"Total de cantidades: {total_cantidades}")
+print(f"Total de la compra: {round(total_compra, 2):.2f} €")
