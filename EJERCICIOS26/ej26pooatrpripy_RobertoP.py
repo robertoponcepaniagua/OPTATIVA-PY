@@ -1,4 +1,4 @@
-# Las propiedades permiten leer y modificar atributos privados con validación.
+# Las propiedades permiten leer y modificar atributos privados con validación
 class Empleado:
     def __init__(self, nombre, sueldo_base):
         self.nombre = nombre
@@ -70,7 +70,7 @@ class Gerente(Empleado):
 # Ejemplo de uso
 vendedor = Vendedor("Carlos", 1200, 350)
 print(f"Comisión inicial: {vendedor.comision:.2f} €")
-# Parece un atributo público, pero Python llama al getter y al setter.
+
 vendedor.comision += 100
 print(f"Comisión actualizada: {vendedor.comision:.2f} €")
 print(f"Sueldo total: {vendedor.calcular_sueldo():.2f} €")

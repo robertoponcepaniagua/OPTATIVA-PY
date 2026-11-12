@@ -6,17 +6,17 @@ class Empleado(ABC):
         self.nombre = nombre
         self.sueldo_base = sueldo_base
 
-    # Las clases hijas deben implementar este método.
+    # Las clases hijas deben implementar este método
     @abstractmethod
     def calcular_sueldo(self):
         pass
 
-    # __str__ indica qué texto se muestra al hacer print del objeto.
+    # __str__ indica qué texto se muestra al hacer print del objeto
     def __str__(self):
         return f"Empleado: {self.nombre} - Sueldo: {self.calcular_sueldo()} €"
 
 
-# EmpleadoBase representa a los empleados sin comisión ni bono.
+# EmpleadoBase representa a los empleados sin comisión ni bono
 class EmpleadoBase(Empleado):
     def calcular_sueldo(self):
         return self.sueldo_base
@@ -56,7 +56,7 @@ class Departamento:
         self.empleados.append(empleado)
 
     def nomina_total(self):
-        # Sumamos el sueldo del gerente y el de los demás empleados.
+        # Sumamos el sueldo del gerente y el de los demás empleados
         total = self.gerente.calcular_sueldo()
         for empleado in self.empleados:
             total += empleado.calcular_sueldo()
@@ -71,14 +71,13 @@ class Departamento:
         return resultado
 
 
-# Creamos los empleados y los departamentos.
+# Creamos los empleados y los departamentos
 ana = EmpleadoBase("Ana", 1200)
 carlos = Vendedor("Carlos", 1200, 350)
 marta = Gerente("Marta", 2000, 500)
 
 nacional = Departamento("Nacional", marta)
 internacional = Departamento("Internacional", Gerente("John", 2500, 850))
-# En este apartado el enunciado repite "Nacional", pero es Nuevos Productos.
 nuevos_productos = Departamento("Nuevos Productos", Gerente("Marta", 2000, 450))
 
 nacional.agregar_empleados(ana)

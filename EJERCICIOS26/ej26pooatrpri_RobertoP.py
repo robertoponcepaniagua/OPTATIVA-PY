@@ -1,7 +1,7 @@
-# El doble guion bajo indica que el atributo es privado.
+# El doble guion bajo indica que el atributo es privado
 class Empleado:
     def __init__(self, nombre, sueldo_base):
-        # Usamos los setters para validar también los datos iniciales.
+        # Usamos los setters para validar los datos iniciales
         self.setNombre(nombre)
         self.setSueldo_base(sueldo_base)
 
@@ -67,7 +67,7 @@ vendedor.setComision(vendedor.getComision() + 100)
 print(f"Comisión actualizada: {vendedor.getComision():.2f} €")
 print(f"Sueldo total: {vendedor.calcular_sueldo():.2f} €")
 
-# Capturamos el error para que el programa pueda continuar.
+# Capturamos el error para que el programa pueda continuar (el de que el sueldo no puede ser -0)
 try:
     vendedor.setSueldo_base(-1200)
 except ValueError as error:
