@@ -1,4 +1,4 @@
-import pandas as pd # pyright: ignore[reportMissingModuleSource]
+import pandas as pd
 
 nombre_archivo = "Ej 27 Pandas 1 Datos.xlsx"
 nombre_hoja = "Alumnos"
